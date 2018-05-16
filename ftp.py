@@ -2,7 +2,7 @@
 #Author: Ankit Patel
 
 #import ftp lib 
-import sys
+
 from ftplib import FTP
 import time
 
@@ -46,13 +46,11 @@ def upload():
 		file.write(contents)
 		print("Contents added successfully.")
 		ftp.storlines("STOR "+"/"+filename,file)
-		print("Contents stored successfully at %s"%(ip))
 		file.close()
 	else:
 		filename=input("Enter filename to upload.")
 		file=open(filename,"rb")
-		ftp.storlines("STOR "+"/"+filename,file)
-		print("Contents stored successfully at %s"%(ip))
+		ftp.storbinary("STOR "+"/"+filename,file)
 		file.close()
 
 #function to change directory
@@ -124,7 +122,7 @@ except ValueError:
 	print("No value entered. Exiting.")
 
 except Exception:
-	print("Error encountered.Exiting")
+	print("Error encountered.Exiting.")
 
 
 				       
